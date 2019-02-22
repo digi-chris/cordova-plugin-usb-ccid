@@ -66,6 +66,17 @@ public class KUsbNfc extends CordovaPlugin {
 
     private CCID cardReader;
 
+    private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+    private static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for ( int j = 0; j < bytes.length; j++ ) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = hexArray[v >>> 4];
+            hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
+
     private final BroadcastReceiver mReceiver = new BroadcastReceiver() {
 
         public void onReceive(Context context, Intent intent) {
@@ -125,11 +136,11 @@ public class KUsbNfc extends CordovaPlugin {
         @Override
         public void inserted() {
             Log.i(TAG, "CardReaderCallback - Card inserted.");
-            if(listenerCallbackContext != null) {
-                PluginResult result = new PluginResult(PluginResult.Status.OK, "Card inserted.");
-                result.setKeepCallback(true);
-                listenerCallbackContext.sendPluginResult(result);
-            }
+            // if(listenerCallbackContext != null) {
+            //     PluginResult result = new PluginResult(PluginResult.Status.OK, "Card inserted.");
+            //     result.setKeepCallback(true);
+            //     listenerCallbackContext.sendPluginResult(result);
+            // }
             BuildCardInfoParams params = new BuildCardInfoParams();
             new BuildCardInfoTask().execute(params);
         }
@@ -173,7 +184,8 @@ public class KUsbNfc extends CordovaPlugin {
             listenerCallbackContext = callbackContext;
             return true;
         } else if (action.equals("transmit")) {
-            callbackContext.OK();
+            JSONObject obj = new JSONObject();
+            callbackContext.success(obj);
         }
         return false;
     }
@@ -404,7 +416,7 @@ public class KUsbNfc extends CordovaPlugin {
                 // read data
                 //byte dataStoreId = (byte)0x00;
                 //byte block = (byte)0x00;
-                byte[] readData = { (byte) 0x80, (byte) 0x81, (byte) 0x00, (byte) 0x00, (byte) 0x00 };
+                //byte[] readData = { (byte) 0x80, (byte) 0x81, (byte) 0x00, (byte) 0x00, (byte) 0x00 };
 
                 // get data store size
                 //byte dataStoreId = (byte)0x00;
@@ -417,26 +429,32 @@ public class KUsbNfc extends CordovaPlugin {
                 //byte[] sendBuffer = { (byte) 0x00, (byte) 0xa4, (byte) 0x04, (byte) 0x00, (byte) 0x67 };
 
                 // read CPLC
-                byte[] readCPLC = { (byte) 0x80, (byte) 0xca, (byte) 0x9f, (byte) 0x7f, (byte) 0x00 };
+                //byte[] readCPLC = { (byte) 0x80, (byte) 0xca, (byte) 0x9f, (byte) 0x7f, (byte) 0x00 };
 
                 // select card manager
-                byte[] sendBuffer = { (byte) 0x00, (byte) 0xa4, (byte) 0x04, (byte) 0x00, (byte) 0x08, (byte) 0xa0, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x03, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00 };
+                //byte[] sendBuffer = { (byte) 0x00, (byte) 0xa4, (byte) 0x04, (byte) 0x00, (byte) 0x08, (byte) 0xa0, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x03, (byte) 0x00, (byte) 0x00, (byte) 0x00, (byte) 0x00 };
 
-                byte[] getResponse = { (byte) 0x80, (byte) 0xc0, (byte) 0x00, (byte) 0x00, (byte) 0x67 };
+                //byte[] getResponse = { (byte) 0x80, (byte) 0xc0, (byte) 0x00, (byte) 0x00, (byte) 0x67 };
 
                 byte[] atr = cardReader.powerOn();
+                try {
+                    resObj.put("atr", atr);
+                    resObj.put("atrString", bytesToHex(atr));
+                } catch(JSONException ex) {
+                    // TODO: Need to report this error
+                }
 
-                byte[] recvBuffer = cardReader.transmitApdu(sendBuffer);
+                //byte[] recvBuffer = cardReader.transmitApdu(sendBuffer);
 
-                byte[] trimmed = trimByteArray(recvBuffer);
+                //byte[] trimmed = trimByteArray(recvBuffer);
 
                 //Log.i(TAG, "Attempting get response...");
                 //byte[] respBuffer = cardReader.transmitApdu(getResponse);
 
-                Log.i(TAG, "Attempting read CPLC...");
-                byte[] readCPLCBuffer = cardReader.transmitApdu(readCPLC);
+                //Log.i(TAG, "Attempting read CPLC...");
+                //byte[] readCPLCBuffer = cardReader.transmitApdu(readCPLC);
 
-                Log.i(TAG, "Received data (" + trimmed.length + ")");
+                //Log.i(TAG, "Received data (" + trimmed.length + ")");
 
                 // try {
                 //     resObj.put("atr", atr);
@@ -445,10 +463,16 @@ public class KUsbNfc extends CordovaPlugin {
                 //     sendExceptionCallback(ex1.toString(), true);
                 // }
 
-                String tagType = identifyTagType(atr);
-                Log.i(TAG, "TagType: " + tagType);
+                //String tagType = identifyTagType(atr);
+                //Log.i(TAG, "TagType: " + tagType);
 
-                buildAndSentCardInfo(trimmed, tagType);
+                //buildAndSentCardInfo(trimmed, tagType);
+
+                if(listenerCallbackContext != null) {
+                    PluginResult result = new PluginResult(PluginResult.Status.OK, resObj);
+                    result.setKeepCallback(true);
+                    listenerCallbackContext.sendPluginResult(result);
+                }
 
             } catch (IOException e) {
                 //Log.d(":: KRISH ::", e.toString());
