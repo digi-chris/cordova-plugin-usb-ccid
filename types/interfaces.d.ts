@@ -12,6 +12,11 @@ export interface KUsbNfc {
     listen(
         callbackSuccess: (res: any) => void,
         callbackError: (err: any) => void): void;
+
+    transmit(
+        callbackSuccess: (res: any) => void,
+        callbackError: (err: any) => void,
+        data: any): void;
 }
 
 export interface NfcDeviceInfo {

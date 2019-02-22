@@ -14,6 +14,10 @@ KUsbNfc.prototype.listen = function (successCallback, errorCallback) {
     exec(successCallback, errorCallback, 'KUsbNfc', 'listen', []);
 };
 
+KUsbNfc.prototype.transmit = function (successCallback, errorCallback, data) {
+    exec(successCallback, errorCallback, 'KUsbNfc', 'transmit', [data]);
+};
+
 KUsbNfc.prototype.disconnect = function (successCallback, errorCallback) {
     exec(successCallback, errorCallback, 'KUsbNfc', 'disconnect', []);
 };

@@ -172,6 +172,8 @@ public class KUsbNfc extends CordovaPlugin {
             // TODO: Should check if listening is possible
             listenerCallbackContext = callbackContext;
             return true;
+        } else if (action.equals("transmit")) {
+            callbackContext.OK();
         }
         return false;
     }
