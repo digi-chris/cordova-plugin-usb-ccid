@@ -185,7 +185,17 @@ public class KUsbNfc extends CordovaPlugin {
             listenerCallbackContext = callbackContext;
             return true;
         } else if (action.equals("transmit")) {
+            String b64 = args[0];
+            byte[] dataOut = Base64.decode(b64, 0);
+            byte[] dataIn = cardReader.transmitApdu(dataOut);
+
             JSONObject obj = new JSONObject();
+            try {
+                obj.put("data", bytesToHex(dataIn));
+                //obj.put("dataBase64", Base64.encodeToString(dataIn, 1));
+            } catch(JSONException ex) {
+
+            }
             callbackContext.success(obj);
         }
         return false;
