@@ -1,12 +1,12 @@
 {
-  "name": "@krish-dev/cordova-plugin-k-usb-nfc",
+  "name": "cordova-plugin-usb-ccid",
   "version": "0.0.1",
-  "description": "Cordova USB NFC card reader",
+  "description": "Cordova USB CCID card reader",
   "peerDependencies": {
     "rxjs": "5.5.11"
   },
   "cordova": {
-    "id": "cordova-plugin-k-usb-nfc",
+    "id": "cordova-plugin-usb-ccid",
     "platforms": [
       "android"
     ]
@@ -19,19 +19,21 @@
     "HID",
     "Omnikey",
     "5022CL",
+    "5421",
+    "CCID",
     "card reader",
     "ecosystem:cordova",
     "cordova-android"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/krish-dev/cordova-plugin-k-usb-nfc.git"
+    "url": "git+https://github.com/digi-chris/cordova-plugin-usb-ccid.git"
   },
   "bugs": {
-    "url": "https://github.com/krish-dev/cordova-plugin-k-usb-nfc/issues"
+    "url": "https://github.com/digi-chris/cordova-plugin-usb-ccid/issues"
   },
   "main": "bundles/main.js",
   "typings": "./types/index.d.ts",
-  "author": "Krishnendu Sekhar Das",
+  "author": "Chris Barnard",
   "license": "MIT"
 }
