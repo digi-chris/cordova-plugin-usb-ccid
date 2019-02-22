@@ -11,6 +11,7 @@ import android.hardware.usb.UsbEndpoint;
 import android.hardware.usb.UsbManager;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.util.Base64;
 
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
@@ -438,8 +439,8 @@ public class KUsbNfc extends CordovaPlugin {
 
                 byte[] atr = cardReader.powerOn();
                 try {
-                    resObj.put("atr", atr);
-                    resObj.put("atrString", bytesToHex(atr));
+                    resObj.put("atr", bytesToHex(atr));
+                    resObj.put("atrData", Base64.encodeToString(atr, 0));
                 } catch(JSONException ex) {
                     // TODO: Need to report this error
                 }
