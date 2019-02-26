@@ -185,7 +185,9 @@ public class KUsbNfc extends CordovaPlugin {
             listenerCallbackContext = callbackContext;
             return true;
         } else if (action.equals("transmit")) {
-            String b64 = args.getJSONObject(0).toString();
+            Log.i(TAG, "args: " + args.toString());
+            String b64 = args.getString(0);
+            Log.i(TAG, "Transmitting " + b64);
             byte[] dataOut = Base64.decode(b64, 0);
             byte[] dataIn;
             try {
@@ -196,13 +198,15 @@ public class KUsbNfc extends CordovaPlugin {
             }
             JSONObject obj = new JSONObject();
             try {
-                obj.put("data", bytesToHex(dataIn));
-                //obj.put("dataBase64", Base64.encodeToString(dataIn, 1));
+                obj.put("dataHex", bytesToHex(dataIn));
+                obj.put("data", Base64.encodeToString(dataIn, 0));
+                Log.i(TAG, "Transmission returned " + Base64.encodeToString(dataIn, 0));
             } catch(JSONException ex) {
                 callbackContext.error(ex.toString());
                 return false;
             }
             callbackContext.success(obj);
+            return true;
         }
         return false;
     }
