@@ -186,9 +186,7 @@ public class CcidUsb extends CordovaPlugin {
             listenerCallbackContext = callbackContext;
             return true;
         } else if (action.equals("transmit")) {
-            Log.i(TAG, "args: " + args.toString());
-            String b64 = args.getString(0);
-            Log.i(TAG, "Transmitting " + b64);
+            String b64 = args.getJSONObject(0).toString();
             byte[] dataOut = Base64.decode(b64, 0);
             byte[] dataIn;
             try {
@@ -199,15 +197,13 @@ public class CcidUsb extends CordovaPlugin {
             }
             JSONObject obj = new JSONObject();
             try {
-                obj.put("dataHex", bytesToHex(dataIn));
-                obj.put("data", Base64.encodeToString(dataIn, 0));
-                Log.i(TAG, "Transmission returned " + Base64.encodeToString(dataIn, 0));
+                obj.put("data", bytesToHex(dataIn));
+                //obj.put("dataBase64", Base64.encodeToString(dataIn, 1));
             } catch(JSONException ex) {
                 callbackContext.error(ex.toString());
                 return false;
             }
             callbackContext.success(obj);
-            return true;
         }
         return false;
     }
