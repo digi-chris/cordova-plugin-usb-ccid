@@ -19,3 +19,6 @@ export enum TagType {
     NFCIP = "NFCIP",
     DESFIRE_EV1 = "DESFIRE_EV1"
 }
+
+
+

@@ -6,7 +6,7 @@
 // } from './enums';
 
 export {
-	CCID,
+	KUsbNfc,
 	NfcDeviceConnectionReponse,
 	NfcTagReponse,
 	NfcDeviceInfo,
