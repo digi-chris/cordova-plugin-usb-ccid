@@ -1,4 +1,4 @@
-package tech.barnard.cordova.plugins.ccid.usb;
+package in.co.indusnet.cordova.plugins.nfc.usb;
 
 import android.hardware.usb.UsbConstants;
 import android.hardware.usb.UsbDevice;
@@ -17,7 +17,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import tech.barnard.cordova.plugins.ccid.diagnostic.CCIDDescriptor;
+import in.co.indusnet.cordova.plugins.nfc.diagnostic.CCIDDescriptor;
 
 public class CCID implements Closeable {
 

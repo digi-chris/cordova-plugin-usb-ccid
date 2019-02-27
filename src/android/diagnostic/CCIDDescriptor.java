@@ -15,7 +15,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with eID Suite.  If not, see <http://www.gnu.org/licenses/>.
 */
-package tech.barnard.cordova.plugins.ccid.diagnostic;
+package in.co.indusnet.cordova.plugins.nfc.diagnostic;
 
 
 import java.io.IOException;

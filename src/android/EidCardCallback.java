@@ -1,4 +1,4 @@
-package tech.barnard.cordova.plugins.ccid;
+package in.co.indusnet.cordova.plugins.nfc;
 
 public interface EidCardCallback {
 
