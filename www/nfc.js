@@ -1,25 +1,25 @@
 var exec = require('cordova/exec');
 /**
- * @name KUsbNfc
+ * @name CcidUsb
  * @description This plugin is responsible to communicate with ACS ACR122U NFC reader device
  * @author Krishnendu Sekhar Das
  */
-function KUsbNfc() { }
+function CcidUsb() { }
 
-KUsbNfc.prototype.connect = function (successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'KUsbNfc', 'connect', []);
+CcidUsb.prototype.connect = function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'CcidUsb', 'connect', []);
 };
 
-KUsbNfc.prototype.listen = function (successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'KUsbNfc', 'listen', []);
+CcidUsb.prototype.listen = function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'CcidUsb', 'listen', []);
 };
 
-KUsbNfc.prototype.transmit = function (successCallback, errorCallback, data) {
-    exec(successCallback, errorCallback, 'KUsbNfc', 'transmit', [data]);
+CcidUsb.prototype.transmit = function (successCallback, errorCallback, data) {
+    exec(successCallback, errorCallback, 'CcidUsb', 'transmit', [data]);
 };
 
-KUsbNfc.prototype.disconnect = function (successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'KUsbNfc', 'disconnect', []);
+CcidUsb.prototype.disconnect = function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'CcidUsb', 'disconnect', []);
 };
 
-module.exports = new KUsbNfc();
+module.exports = new CcidUsb();
