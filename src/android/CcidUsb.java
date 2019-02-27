@@ -31,8 +31,9 @@ import tech.barnard.cordova.plugins.ccid.usb.CardCallback;
 
 /**
  * KUsbNfc android Created by Krishnendu Sekhar Das
+ * Modified as CCID by Chris Barnard
  */
-public class KUsbNfc extends CordovaPlugin {
+public class CcidUsb extends CordovaPlugin {
 
     private static final String ACTION_USB_PERMISSION = "com.android.example.USB_PERMISSION";
     private static final String UNKNOWN = "UNKNOWN";
