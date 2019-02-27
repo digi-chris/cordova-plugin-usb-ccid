@@ -4,22 +4,22 @@ var exec = require('cordova/exec');
  * @description
  * @author Krishnendu Sekhar Das
  */
-function CcidUsb() { }
+function CCID() { }
 
-CcidUsb.prototype.connect = function (successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'CcidUsb', 'connect', []);
+CCID.prototype.connect = function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'CCID', 'connect', []);
 };
 
-CcidUsb.prototype.listen = function (successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'CcidUsb', 'listen', []);
+CCID.prototype.listen = function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'CCID', 'listen', []);
 };
 
-CcidUsb.prototype.transmit = function (successCallback, errorCallback, data) {
-    exec(successCallback, errorCallback, 'CcidUsb', 'transmit', [data]);
+CCID.prototype.transmit = function (successCallback, errorCallback, data) {
+    exec(successCallback, errorCallback, 'CCID', 'transmit', [data]);
 };
 
-CcidUsb.prototype.disconnect = function (successCallback, errorCallback) {
-    exec(successCallback, errorCallback, 'CcidUsb', 'disconnect', []);
+CCID.prototype.disconnect = function (successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'CCID', 'disconnect', []);
 };
 
-module.exports = new CcidUsb();
+module.exports = new CCID();

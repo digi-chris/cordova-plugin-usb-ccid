@@ -1,6 +1,6 @@
 import { ResponseType, TagType } from "./enums";
 
-export interface CcidUsb {
+export interface CCID {
     connect(
         callbackSuccess: (res: NfcDeviceConnectionReponse | NfcTagReponse) => void,
         callbackError: (err: NfcDeviceConnectionReponse | NfcTagReponse | any) => void): void;
