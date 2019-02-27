@@ -1,4 +1,4 @@
-package in.co.indusnet.cordova.plugins.nfc;
+package tech.barnard.cordova.plugins.ccid;
 
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -26,8 +26,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Arrays;
 
-import in.co.indusnet.cordova.plugins.nfc.usb.CCID;
-import in.co.indusnet.cordova.plugins.nfc.usb.CardCallback;
+import tech.barnard.cordova.plugins.ccid.usb.CCID;
+import tech.barnard.cordova.plugins.ccid.usb.CardCallback;
 
 /**
  * KUsbNfc android Created by Krishnendu Sekhar Das

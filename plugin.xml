@@ -17,7 +17,7 @@
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="CCID">
-                <param name="android-package" value="tech.barnard.cordova.plugins.usb.ccid"/>
+                <param name="android-package" value="tech.barnard.cordova.plugins.ccid"/>
 				<param name="onload" value="true"/>
             </feature>
         </config-file>
