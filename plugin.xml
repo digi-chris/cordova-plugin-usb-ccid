@@ -4,34 +4,34 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-plugin-usb-ccid"
     version="0.0.1">
-    <name>KUsbNfc</name>
-    <description>Cordova NFC Plugin</description>
+    <name>CCIDUSB</name>
+    <description>Cordova USB CCID Reader</description>
     <license>Apache 2.0</license>
-    <keywords>cordova,nfc,payment</keywords>
+    <keywords>cordova,ccid,usb,payment</keywords>
 
-    <js-module src="www/nfc.js" name="KUsbNfc">
-        <clobbers target="KUsbNfc"/>
+    <js-module src="www/ccid.js" name="CCID">
+        <clobbers target="CCID"/>
     </js-module>
 
     <!-- android -->
     <platform name="android">
         <config-file target="config.xml" parent="/*">
-            <feature name="KUsbNfc">
-                <param name="android-package" value="in.co.indusnet.cordova.plugins.nfc.KUsbNfc"/>
+            <feature name="CCID">
+                <param name="android-package" value="tech.barnard.cordova.plugins.usb.ccid"/>
 				<param name="onload" value="true"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/KUsbNfc.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc"/>
-        <source-file src="src/android/EidCardCallback.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc"/>
+        <source-file src="src/android/CCID.java" target-dir="src/tech/barnard/cordova/plugins/ccid"/>
+        <source-file src="src/android/EidCardCallback.java" target-dir="src/tech/barnard/cordova/plugins/ccid"/>
 
-        <source-file src="src/android/usb/CCID.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc/usb"/>
-        <source-file src="src/android/usb/CCIDException.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc/usb"/>
-        <source-file src="src/android/usb/CardCallback.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc/usb"/>
+        <source-file src="src/android/usb/CCID.java" target-dir="src/tech/barnard/cordova/plugins/ccid/usb"/>
+        <source-file src="src/android/usb/CCIDException.java" target-dir="src/tech/barnard/cordova/plugins/ccid/usb"/>
+        <source-file src="src/android/usb/CardCallback.java" target-dir="src/tech/barnard/cordova/plugins/ccid/usb"/>
 
-        <source-file src="src/android/diagnostic/CCIDDescriptor.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc/diagnostic"/>
-        <source-file src="src/android/diagnostic/EndPointDescriptor.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc/diagnostic"/>
-        <source-file src="src/android/diagnostic/InterfaceDescriptor.java" target-dir="src/in/co/indusnet/cordova/plugins/nfc/diagnostic"/>
+        <source-file src="src/android/diagnostic/CCIDDescriptor.java" target-dir="src/tech/barnard/cordova/plugins/ccid/diagnostic"/>
+        <source-file src="src/android/diagnostic/EndPointDescriptor.java" target-dir="src/tech/barnard/cordova/plugins/ccid/diagnostic"/>
+        <source-file src="src/android/diagnostic/InterfaceDescriptor.java" target-dir="src/tech/barnard/cordova/plugins/ccid/diagnostic"/>
 
     </platform>
 </plugin>
